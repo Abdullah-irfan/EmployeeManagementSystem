@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>EmployeeManagement_.Resources</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EmployeeManagement .Entity\EmployeeManagement .Entity.csproj" />
+    <ProjectReference Include="..\EmployeeManagement.Core\EmployeeManagement.Core.csproj" />
+  </ItemGroup>
+
+</Project>

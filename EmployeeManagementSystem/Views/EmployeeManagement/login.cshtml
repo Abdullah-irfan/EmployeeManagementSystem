@@ -1,0 +1,78 @@
+﻿@model EmployeeManagement.Core.Modal.LoginDetails
+<script src="~/js/site.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<style>
+    span {
+        color: red;
+    }
+</style>
+
+<h1>Student Mark Details</h1>
+@using (Html.BeginForm("login", "EmployeeManagement", FormMethod.Post, new { role = "form", id = "formDetails" }))
+{
+<div class="container">
+    <div class="form-group">
+        @Html.LabelFor(x => x.UserName, new { @class = "form-label" })<span>*</span>
+
+        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @placeholder = "Enter Your UserName" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Password, new { @class = "form-label" })<span>*</span>
+
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control", @placeholder = "Enter Your Email" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" onclick="SubmitDetails()">Submit</button>
+    </div>
+    @*<environment include="Development">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        </environment>*@
+</div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#formDetails").validate({
+            rules: {
+                UserName:
+                {
+                    required: true
+                   
+                },
+                Password:
+                {
+                    required: true
+                }
+            },
+               
+           
+            messages:
+            {
+                UserName:
+                {
+                    required: "Enter UserName"
+                },
+                Password:
+                {
+                    required: "Password is required"
+                    
+                }
+                
+            }
+        });
+    });
+    function SubmitDetails() {
+        if ($("#formDetails").validate()) {
+            $("#formDetails").submit();
+        }
+    }
+</script>
+

@@ -1,0 +1,47 @@
+﻿@model List<EmployeeManagement.Core.Modal.EmployeeDetails>
+
+<div class="container">
+
+    <button class="btn btn-primary" onclick="adddetails()">AddDetails</button>
+    <table class="table table-hover">
+
+        <tr>
+
+            <th>Full Name</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Matricule</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+
+
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+
+                <td> @item.FullName </td>
+                <td> @item.UserName </td>
+                <td> @item.Email</td>
+                <td> @item.Department </td>
+                <td> @item.Matricule</td>
+                <td> @item.Address</td>
+                <td> @item.PhoneNumber</td>
+                <td> @item.Gender</td>
+
+
+            </tr>
+        }
+    </table>
+    <h5>Total Employee count =@(Model.Count())</h5>
+</div>
+<script>
+    function adddetails() {
+        window.location.href = "@Url.Action("Dashboard", "EmployeeManagement")";
+    }
+</script>

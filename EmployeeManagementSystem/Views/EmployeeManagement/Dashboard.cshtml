@@ -1,0 +1,176 @@
+﻿
+
+
+
+@model EmployeeManagement.Core.Modal.EmployeeDetails
+<script src="~/js/site.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<h1>Student Details</h1>
+@using (Html.BeginForm("SaveEmployeeDetails", "EmployeeManagement", FormMethod.Post, new { @id = "formDetails" }))
+{
+
+    <style>
+        span {
+            color: red;
+        }
+    </style>
+    @Html.HiddenFor(x => x.EmpolyeeId)
+<div class="container">
+
+    <div class="form-group ">
+        @Html.LabelFor(x => x.FullName, new { @class = "form-label" })<span>*</span>
+        @Html.TextBoxFor(x => x.FullName, new { @class = "form-control", @placeholder = "Enter Your Name" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.UserName, new { @class = "form-label" })<span>*</span>
+        @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @placeholder = "Enter Your UserName" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Email, new { @class = "form-label" })<span>*</span>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @placeholder = "Enter Your Email" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Department, new { @class = "form-label" })<span>*</span>
+        @*<label class="col-form-label">Department</label><span>*</span>*@
+       
+        @Html.DropDownListFor(x => x.Department, new List<SelectListItem> { new SelectListItem() { Text = "---Select Department---", Value = "" },
+            new SelectListItem { Text="MSC", Value="MCS"} ,
+             new SelectListItem { Text="BSC", Value="BSC"} ,
+              new SelectListItem { Text="MBA", Value="MBA"} ,
+               new SelectListItem { Text="B.TECH", Value="B.TECH"} 
+   })
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Matricule, new { @class = "form-label" })<span>*</span>
+        @Html.TextBoxFor(x => x.Matricule, new { @class = "form-control", @placeholder = "Enter Your Matricule" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Address, new { @class = "form-label" })<span>*</span>
+        @Html.TextBoxFor(x => x.Address, new { @class = "form-control", @placeholder = "Enter Your Address" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.PhoneNumber, new { @class = "form-label" })<span>*</span>
+        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @placeholder = "Enter Your PhoneNumber" })
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Gender, new { @class = "form-label" })<span>*</span>
+        @Html.RadioButtonFor(x => x.Gender, "Male")Male
+        @Html.RadioButtonFor(x => x.Gender, "Female")Female
+    </div>
+
+
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" onclick="SubmitDetails()">Submit</button>
+    </div>
+    @ViewBag.Message
+    @*<environment include="Development">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+        </environment>*@
+</div>
+
+}
+<script type="text/javascript">
+    $(function () {
+        $("#formDetails").validate({
+            rules: {
+                FullName:
+                {
+                    required: true
+                   
+                },
+                UserName:
+                {
+                    required: true
+                },
+                Email:
+                {
+                    required: true,
+                    email: true
+                },
+                Department:
+                {
+                    required: true
+                },
+
+                Matricule:
+                {
+                    required: true
+                },
+
+                Address:
+                {
+                    required: true
+                },
+                PhoneNumber:
+                {
+                    required: true
+                },
+                Gender:
+                {
+                    required: true
+                }
+            },
+            messages:
+            {
+                FullName:
+                {
+                    required: "Enter Your FullName"
+                   
+                },
+                UserName:
+                {
+                    required: "UserName is required"
+                   
+                },
+                Email:
+                {
+                    required: "Email is required",
+                    regex: "Email is Invalid"
+                },
+                Department:
+                {
+                    required: "Department is required"
+                },
+                Matricule:
+                {
+                    required: "Matricule is required"
+                },
+                Address:
+                {
+                    required: "Address is required"
+                },
+                PhoneNumber:
+                {
+                    required: "PhoneNumber is required"
+                },
+                Gender:
+                {
+                    required: "PhoneNumber is required"
+                }
+            }
+        });
+    });
+    function SubmitDetails() {
+        if ($("#formDetails").validate()) {
+            $("#formDetails").submit();
+        }
+    }
+</script>
+
